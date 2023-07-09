@@ -20,14 +20,6 @@ public class OrderImpl implements Order {
     private  List<Package> packages;
     private  ZonedDateTime createdTs;
 
-    public double getTotalPrice() {
-        return packages
-                .stream()
-                .map(Package::getTotalPrice)
-                .reduce(Double::sum)
-                .orElse(0.0);
-    }
-
     @Override
     public boolean isEligibleForLottery() {
         return new HashSet<>(packages.stream().map(Package::type).toList()).containsAll(List.of(PRINT, PANORAMA, STRIP));

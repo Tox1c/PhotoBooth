@@ -26,13 +26,16 @@ public class LuckyOrderProcessorImpl implements OrderProcessor {
         if (order.isEligibleForLottery() && isLuckyTime(customer, order)) {
             ArrayList<Package> newPackages = new ArrayList<>();
             //1. check price of each package and take the most expensive
-            Package mostExpensivePackage = order.getPackages().stream().max(Comparator.comparingDouble(Package::getTotalPrice)).get();
-            newPackages.add(mostExpensivePackage);
-            //2. make 2 others for free
-            newPackages.addAll(order.getPackages().stream()
-                    .filter(p -> p.type() != mostExpensivePackage.type())
-                    .map(p -> new Package(p.type(), 0.0, p.quantity()))
-                    .toList());
+            order.getPackages().stream().max(Comparator.comparingDouble(Package::getTotalPrice))
+                    .ifPresent(expensivePackage -> {
+                        newPackages.add(expensivePackage);
+                        //2. make 2 others for free
+                        newPackages.addAll(order.getPackages().stream()
+                                .filter(p -> p.type() != expensivePackage.type())
+                                .map(p -> new Package(p.type(), 0.0, p.quantity()))
+                                .toList());
+                    });
+
             return OrderImpl.builder()
                     .id(order.getId())
                     .packages(newPackages)

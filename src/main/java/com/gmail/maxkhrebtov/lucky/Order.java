@@ -7,7 +7,6 @@ import java.util.UUID;
 public interface Order extends LotteryEligible {
 
     UUID getId();
-    double getTotalPrice();
 
     List<Package> getPackages();
 
