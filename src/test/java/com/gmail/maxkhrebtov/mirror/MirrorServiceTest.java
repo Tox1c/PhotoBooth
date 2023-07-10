@@ -21,11 +21,11 @@ public class MirrorServiceTest {
                 Commas, periods, and spaces are the only delimiters allowed in this implementation.""";
 
         String expectedText = """
-                .sdoirep dna sammoc htiw txet tupni fo elpmaxe na si sihT
-                .desrever eb dluohs sdrow lla tub redro drow emas eht evah dluohs txet tuptuo ehT
-                .noitatnemelpmi siht ni dewolla sretimiled ylno eht era secaps dna ,sdoirep ,sammoC""";
+                .ƨboiɿɘq bnɒ ƨɒmmoↄ ⑁ɟiw ɟxɘɟ ɟuqni ʇo ɘlqmɒxɘ nɒ ƨi ƨi⑁ɟ
+                .bɘƨɿɘvɘɿ ɘd bluo⑁ƨ ƨbɿow llɒ ɟud ɿɘbɿo bɿow ɘmɒƨ ɘ⑁ɟ ɘvɒ⑁ bluo⑁ƨ ɟxɘɟ ɟuqɟuo ɘ⑁ɟ
+                .noiɟɒɟnɘmɘlqmi ƨi⑁ɟ ni bɘwollɒ ƨɿɘɟimilɘb γlno ɘ⑁ɟ ɘɿɒ ƨɘↄɒqƨ bnɒ ,ƨboiɿɘq ,ƨɒmmoↄ""";
         String outputText = mirrorService.mirrorText(inputText);
-
+        System.out.println(outputText);
         Assertions.assertEquals(expectedText, outputText);
     }
 }
