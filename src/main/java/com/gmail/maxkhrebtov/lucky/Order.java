@@ -9,6 +9,7 @@ public interface Order extends LotteryEligible {
     UUID getId();
 
     List<Package> getPackages();
+     void setPackages(List<Package> packages);
 
     ZonedDateTime getCreatedTs();
 }

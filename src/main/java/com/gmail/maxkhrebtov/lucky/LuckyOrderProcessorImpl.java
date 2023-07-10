@@ -18,31 +18,25 @@ public class LuckyOrderProcessorImpl implements OrderProcessor {
 
     @Override
     public void process(Customer customer, Order order) {
-        var newOrder = processUpdateOrderIfLuckyCase(customer, order);
-        delegateOrderProcessor.process(customer, newOrder);
+        processUpdateOrderIfLuckyCase(customer, order);
+        delegateOrderProcessor.process(customer, order);
     }
 
-    private Order processUpdateOrderIfLuckyCase(Customer customer, Order order) {
+    private void processUpdateOrderIfLuckyCase(Customer customer, Order order) {
         if (order.isEligibleForLottery() && isLuckyTime(customer, order)) {
-            ArrayList<Package> newPackages = new ArrayList<>();
             //1. check price of each package and take the most expensive
             order.getPackages().stream().max(Comparator.comparingDouble(Package::getTotalPrice))
                     .ifPresent(expensivePackage -> {
+                        ArrayList<Package> newPackages = new ArrayList<>();
                         newPackages.add(expensivePackage);
                         //2. make 2 others for free
                         newPackages.addAll(order.getPackages().stream()
                                 .filter(p -> p.type() != expensivePackage.type())
                                 .map(p -> new Package(p.type(), 0.0, p.quantity()))
                                 .toList());
+                        order.setPackages(newPackages);
                     });
-
-            return OrderImpl.builder()
-                    .id(order.getId())
-                    .packages(newPackages)
-                    .createdTs(order.getCreatedTs())
-                    .build();
         }
-        return order;
     }
 
     private boolean isLuckyTime(Customer customer, Order order) {

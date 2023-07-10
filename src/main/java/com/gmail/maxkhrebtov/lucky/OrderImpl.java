@@ -1,8 +1,8 @@
 package com.gmail.maxkhrebtov.lucky;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.time.ZonedDateTime;
 import java.util.HashSet;
@@ -12,13 +12,13 @@ import java.util.UUID;
 import static com.gmail.maxkhrebtov.lucky.Package.PackageType.*;
 
 @Getter
-@Builder
 @AllArgsConstructor
 public class OrderImpl implements Order {
 
-    private  UUID id;
-    private  List<Package> packages;
-    private  ZonedDateTime createdTs;
+    private UUID id;
+    @Setter
+    private List<Package> packages;
+    private ZonedDateTime createdTs;
 
     @Override
     public boolean isEligibleForLottery() {
