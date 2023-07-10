@@ -1,5 +1,7 @@
 package com.gmail.maxkhrebtov.lucky;
 
+import com.gmail.maxkhrebtov.order.*;
+import com.gmail.maxkhrebtov.order.Package;
 import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;

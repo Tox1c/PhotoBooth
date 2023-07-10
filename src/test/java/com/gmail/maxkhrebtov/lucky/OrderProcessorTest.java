@@ -1,5 +1,7 @@
 package com.gmail.maxkhrebtov.lucky;
 
+import com.gmail.maxkhrebtov.order.*;
+import com.gmail.maxkhrebtov.order.Package;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -10,7 +12,7 @@ import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.UUID;
 
-import static com.gmail.maxkhrebtov.lucky.Package.PackageType.*;
+import static com.gmail.maxkhrebtov.order.Package.PackageType.*;
 import static org.mockito.Mockito.lenient;
 
 @ExtendWith(MockitoExtension.class)
