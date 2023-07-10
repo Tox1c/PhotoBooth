@@ -10,6 +10,7 @@ public interface Order extends LotteryEligible {
     UUID getId();
 
     double getTotalPrice();
+
     List<Package> getPackages();
 
     void setPackages(List<Package> packages);
